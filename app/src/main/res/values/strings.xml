@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">proyectofinal_julen</string>
+    <string name="signup">¿No tienes una cuenta todavía?</string>
+    <string name="log_in">Log In</string>
+    <string name="sign_up">SIGN UP</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="precio_producto">Precio producto</string>
+    <string name="nombre_producto">Nombre producto</string>
+
+    <string-array name="sentences">
+        <item>¿Sabías que una vez un científico inventó el kebab infinito? A los dos días lo encontraron "neutralizado"</item>
+        <item>Las cosas son más bonitas en pareja, no le regales flores, regálale un suculento dürum con amor… y mucha salsa</item>
+        <item>¡No te cierres puertas! Con cada producto comprado estarás más cerca de activar los platos ESPECIALES de la carta</item>
+        <item>Las orcas no son ballenas, son delfines. Con datos curiosos y kebab sabrosos, mejoramos tus días grises ;)</item>
+        <item>El plato favorito del creador de esta aplicación es el Kebab Doble de Ternera con todo… ¿y el tuyo? Demuéstralo en tu pedido</item>
+        <item>¿Cuál es la diferencia entre programar con fragments y comerse un falafel? Que lo primero nunca quieres que se acabe</item>
+        <item>Cuando el ánimo de tu kebero de confianza veas bajar, propina debes dejar</item>
+        <item>"Flow fuera del planeta no no soy de Pluton, soy de la H y no estoy hablando de Houston"</item>
+        <item>Nuestro súper-kebero los enrrolla mejor que Bad Gyal… LOS DÜRUM</item>
+        <item>En la antigüedad, los turcos llevaban kebab a las batallas para no desfallecer, a eso se debía el auge del Imperio Otomano</item>
+        <item>Siladelaifafi…, siladelaifafi isalireldistance YEH</item>
+        <item>A veces sólo necesitas que alguien te invite a un plato de carne con patatas y te diga que todo va ir bien</item>
+        <item>¿Te consideras viejoven? Nunca es tarde para meterse un buen Lahmacun entre pecho y espalda</item>
+        <item>Todos mis amigos se llaman Cayetano, no se quieren comer el kebab con las manos.</item>
+        <item>Lisa… en este Kebab respetamos las leyes de la ¡TERMODINÁMICA!</item>
+        <item>¡Tu amigo y vecino Kebab-Man!</item>
+        <item>Si quieres puedes cerrar sesión con el botón de arriba… pero, no te irás todavía, ¿VERDAD? :(</item>
+        <item>"Master of Falafel is pulling my strings!!" \m/</item>
+        <item>Entonces Víctor le dice a Joel: ¡DESAYUNA CON KEBAB!</item>
+        <item>Nos gusta mucho la integridad referencial del modelo de datos… casi tanto como un kebab soble calentito</item>
+    </string-array>
+</resources>
+

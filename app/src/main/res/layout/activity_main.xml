@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.MainActivity"
+    android:background="@drawable/logo">
+
+    <TableLayout
+        android:id="@+id/tabla"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="0dp">
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/lblUsuario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email:"
+                android:textColor="@android:color/black"/>
+
+            <EditText
+                android:layout_width="183dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/email"
+                android:inputType="textEmailAddress"
+                android:hint="happy@gmail.com"
+                />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/lblPwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password:"
+                android:textColor="@android:color/black"/>
+
+            <EditText
+                android:layout_width="183dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/password"
+                android:inputType="textPassword" />
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/tabla"
+        android:text="@string/log_in"
+        android:id="@+id/btnLogin"
+        android:backgroundTint="@color/cardview_shadow_start_color"/>
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnLogin"
+        android:id="@+id/tb2">
+
+
+<TableRow>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lblSignUp"
+        android:text="@string/signup"
+        android:layout_below="@id/btnLogin"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="13dp"/>
+
+    <TextView
+        android:id="@+id/btnSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnLogin"
+        android:layout_marginLeft="5dp"
+        android:background="@android:color/transparent"
+        android:text="Únete"
+        android:layout_marginTop="13dp"
+        android:textColor="@color/white"
+        android:clickable="true"
+        />
+</TableRow>
+    </TableLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lblVolver"
+        android:text="¿Ya tienes una cuenta con nostros?"
+        android:layout_below="@id/tb2"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="13dp"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/btnVolver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lblVolver"
+        android:layout_marginLeft="5dp"
+        android:background="@android:color/transparent"
+        android:text="Inicia sesión"
+        android:layout_centerInParent="true"
+        android:textColor="@color/white"
+        android:clickable="true"
+        android:visibility="invisible"
+        android:enabled="false"
+        />
+
+</RelativeLayout>
