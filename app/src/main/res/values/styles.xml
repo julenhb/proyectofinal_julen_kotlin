@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyFloatingActionButtonStyle" parent="@style/Widget.MaterialComponents.FloatingActionButton">
+        <item name="android:background">@drawable/bolsa</item>
+    </style>
+
+</resources>

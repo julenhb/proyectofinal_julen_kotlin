@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:maxHeight="400dp"
+    android:background="@color/prueba">
+
+
+    <ListView
+        android:id="@+id/lista"
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        />
+
+
+    <TextView
+        android:id="@+id/precioTotal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/lista"
+        android:background="@android:color/holo_red_light"
+        android:gravity="center"
+        android:text="Total a pagar"
+        android:textColor="@color/marron_bk"
+        android:textSize="18dp"
+        />
+
+</RelativeLayout>

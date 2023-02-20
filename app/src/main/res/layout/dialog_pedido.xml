@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nombre"
         android:fontFamily="sans-serif-medium"
-        android:textSize="30dp"
-        android:id="@+id/nombreProducto"/>
+        android:textSize="26dp"
+        android:id="@+id/nombreProducto"
+        android:textColor="@color/marron_bk"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -19,7 +23,9 @@
         android:fontFamily="sans-serif-medium"
         android:textSize="20dp"
         android:layout_marginTop="10dp"
-        android:layout_below="@id/nombreProducto"/>
+        android:layout_below="@id/nombreProducto"
+        android:textColor="@color/marron_bk"
+        android:layout_marginLeft="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,6 +34,36 @@
         android:id="@+id/precioProducto"
         android:layout_below="@id/descripcion"
         android:layout_marginTop="10dp"
-        android:fontFamily="sans-serif-medium"/>
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/marron_bk"
+        android:textSize="18dp"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Observaciones:"
+        android:id="@+id/lblObs"
+        android:layout_below="@id/precioProducto"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/marron_bk"
+        android:textSize="18dp"
+        android:layout_marginLeft="10dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/observaciones"
+        android:layout_below="@id/lblObs"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="30dp"
+        android:hint="Escribe aquí para personalizar tu pedido"
+        android:textColorHint="@android:color/darker_gray"
+        android:textColor="@android:color/black"
+        />
+
+
+
 
 </RelativeLayout>

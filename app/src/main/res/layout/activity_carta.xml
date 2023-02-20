@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.CartaActivity">
+    tools:context=".activities.CartaActivity"
+    android:background="@color/prueba">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,6 +44,8 @@
             android:layout_below="@id/containerFragments"
             android:layout_marginTop="1dp" />
 
+
+
         <TextView
             android:id="@+id/footer"
             android:layout_width="match_parent"
@@ -50,5 +53,17 @@
             android:layout_gravity="bottom"
             android:background="@drawable/footer"/>
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnCarrito"
+        android:layout_width="67dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/bolsa"
+        app:backgroundTint="@android:color/holo_red_light"
+
+        />
 
 </RelativeLayout>

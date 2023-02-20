@@ -18,8 +18,7 @@ class InfoCliente : Fragment() {
     private lateinit var sentence: TextView
 
     private lateinit var arrayFrases: Array<String>
-    private val rangoInicial = 1
-    private val rangoFinal = 20
+
 
     private lateinit var random: Random
 
@@ -37,17 +36,21 @@ class InfoCliente : Fragment() {
         // Obtener el contexto
         val context = requireContext()
 
-        // Inicializar el array de frases
+        // Inicializo el array de las frases y fijo los límites del random dentro de los índices del array
         arrayFrases = resources.getStringArray(R.array.sentences)
+        val rangoInicial = 1
+        val rangoFinal = arrayFrases.size - 1
 
-        // Inicializar el random
+        // Inicializo el random
         random = Random(context.hashCode())
 
-        // Obtener una frase aleatoria del array
+        // Le paso el rango y fijo el valor en el textView de sentencias
         val frase = random.nextInt(rangoFinal - rangoInicial + 1) + rangoInicial
         sentence.text = arrayFrases[frase]
+
+        //Le paso los valores que quiero mostrar del usuario que viene de la activity de Carta
         email.text = user.email
-        kpoints.text = "kebabpoints + ${user.kebabpoints.toString()}"
+        kpoints.text = "kebabpoints: ${user.kebabpoints.toString()}"
 
         return view
     }

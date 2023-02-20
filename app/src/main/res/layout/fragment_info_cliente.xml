@@ -40,10 +40,11 @@
             android:textSize="20dp"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="6dp"
             android:layout_below="@id/kebabpoints"
             android:id="@+id/randomSentece"
-
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:textColor="@color/marron_bk"/>
 
 

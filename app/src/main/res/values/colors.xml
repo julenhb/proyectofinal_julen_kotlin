@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="marron_bk">#502314</color>
+    <color name="red_bk">#d62300</color>
+    <color name="prueba">#FAEBD7</color>
 </resources>
