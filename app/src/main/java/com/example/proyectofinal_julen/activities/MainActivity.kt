@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.example.proyectofinal_julen.R
+import com.example.proyectofinal_julen.entity.Pedido
 import com.example.proyectofinal_julen.entity.Usuario
 import com.example.proyectofinal_julen.service.UsuarioService
 
@@ -23,15 +24,16 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity(), OnClickListener {
 
-    private lateinit var email : EditText
-    private lateinit var pwd : EditText
-    private lateinit var login : Button
-    private lateinit var signUp : TextView
-    private lateinit var lblSign : TextView
-    private lateinit var lblVolver : TextView
-    private lateinit var btnVolver : TextView
+    private lateinit var email: EditText
+    private lateinit var pwd: EditText
+    private lateinit var login: Button
+    private lateinit var signUp: TextView
+    private lateinit var lblSign: TextView
+    private lateinit var lblVolver: TextView
+    private lateinit var btnVolver: TextView
     val listaUsuarios = ArrayList<Usuario>()
     val usuarioService = UsuarioService()
+    private lateinit var user: Usuario
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,34 +62,56 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        when(v?.id){
+        when (v?.id) {
             R.id.btnLogin -> {
                 if (login.text.equals(getString(R.string.log_in))) {
                     var usu = getUsuarioByEmail(email.text.toString())
-                    if(comprobarLogin(usu, email.text.toString(), pwd.text.toString()) == true){
-                        intent = Intent(this, CartaActivity :: class.java)
+                    Log.d(
+                        "USUARIO",
+                        "${usu.email}, ${usu.pwd}, ${usu.kebabpoints}, ${usu.id}, ${usu.admn}"
+                    )
+                    if (comprobarLogin(usu, email.text.toString(), pwd.text.toString()) == true) {
+                        intent = Intent(this, CartaActivity::class.java)
                         intent.putExtra("usuario", usu)
                         startActivity(intent)
 
-                        Toast.makeText(this, "Buenas amig@ ${nombre(usu.email)}", Toast.LENGTH_LONG).show()
-                    }else{
+                        Toast.makeText(
+                            this,
+                            "Buenas amig@ ${nombre(usu.email)} ${usu.kebabpoints}",
+                            Toast.LENGTH_LONG
+                        )
+                            .show()
+                    } else {
                         Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_LONG).show()
                     }
 
 
-                }else if (login.text.equals(getString(R.string.sign_up))){
+                } else if (login.text.equals(getString(R.string.sign_up))) {
                     var usu = getUsuarioByEmail(email.text.toString())
-                    if(comprobarRegistro(usu, email.text.toString()) == true){
-                        Toast.makeText(this, "El email que has usado ya está registrado", Toast.LENGTH_LONG).show()
-                        email.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_light))
-                    }else{
+                    if (comprobarRegistro(usu, email.text.toString()) == true) {
+                        Toast.makeText(
+                            this,
+                            "El email que has usado ya está registrado",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        email.setTextColor(
+                            ContextCompat.getColor(
+                                this,
+                                android.R.color.holo_red_light
+                            )
+                        )
+                    } else {
                         var usu1 = Usuario(email.text.toString(), pwd.text.toString())
                         usuarioService.createUsuario(usu1)
                         var usulogin = getUsuarioByEmail(email.text.toString())
-                        intent = Intent(this, CartaActivity :: class.java)
+                        intent = Intent(this, CartaActivity::class.java)
                         intent.putExtra("usuario", usulogin)
                         startActivity(intent)
-                        Toast.makeText(this, "Buenas amig@ ${nombre(usulogin.email)}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            this,
+                            "Buenas amig@ ${nombre(usulogin.email)}",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
 
                 }
@@ -114,7 +138,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 login.setText(getString(R.string.sign_up))    //cambio el botón de login a registro
             }
 
-            R.id.btnVolver ->{
+            R.id.btnVolver -> {
 
                 //CAMBIO AL LOGIN
                 lblVolver.isVisible = false
@@ -131,57 +155,75 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         }
     }
 
-
-
-    fun getUsuarios() {
-        usuarioService.getUsuarios().enqueue(object: Callback<List<Usuario>> {
-            override fun onResponse(call: Call<List<Usuario>>, response: Response<List<Usuario>>) {
-                if (response.isSuccessful)
-                {
-                    for (usu in response.body()!!)
-                        listaUsuarios.add(usu)
-                    Log.d("TAG", "insertando usuarios")
-                } else
-                {
+/*
+    fun getUsuarioByEmail(email: String) {
+        usuarioService.getUsuarioByEmail(email).enqueue(object : Callback<Usuario> {
+            override fun onResponse(call: Call<Usuario>, response: Response<Usuario>) {
+                if (response.isSuccessful) {
+                    user = response.body()!!
+                } else {
                     Log.d("TAG", "aaaaaa")
                 }
             }
 
-            override fun onFailure(call: Call<List<Usuario>> , t: Throwable) {
+            override fun onFailure(call: Call<Usuario>, t: Throwable) {
+                // something went completely south (like no internet connection)
+                t.message?.let { Log.d("bbbbb", it) }
+            }
+        })
+    }*/
+
+    fun getUsuarioByEmail(email: String): Usuario {
+        for (i in listaUsuarios) {
+            if (i.email == email) {
+                user = i
+                break
+            }
+        }
+        return user
+    }
+
+
+    fun getUsuarios() {
+        usuarioService.getUsuarios().enqueue(object : Callback<List<Usuario>> {
+            override fun onResponse(call: Call<List<Usuario>>, response: Response<List<Usuario>>) {
+                if (response.isSuccessful) {
+                    for (usu in response.body()!!) {
+                        Log.d(
+                            "USUARIO",
+                            "${usu.email}, ${usu.pwd}, ${usu.kebabpoints}, ${usu.id}, ${usu.admn}"
+                        )
+                        listaUsuarios.add(usu)
+                    }
+
+                }
+            }
+
+            override fun onFailure(call: Call<List<Usuario>>, t: Throwable) {
                 // something went completely south (like no internet connection)
                 t.message?.let { Log.d("bbbbbb", it) }
             }
         })
     }
 
-    fun getUsuarioByEmail(email: String): Usuario {
-        var usu: Usuario = Usuario()
-        for (usuario in listaUsuarios) {
-            if (usuario.email == email) {
-                usu = usuario
-                break
-            }
-        }
-        return usu
-    }
 
-    fun comprobarLogin(usu : Usuario, email : String, pwd : String) : Boolean {
-        if(usu.email == email && usu.pwd == pwd){
+    fun comprobarLogin(usu: Usuario, email: String, pwd: String): Boolean {
+        if (usu.email == email && usu.pwd == pwd) {
             return true
-        }else{
+        } else {
             return false
         }
     }
 
-    fun comprobarRegistro(usu : Usuario, email : String) : Boolean {
-        if(usu.email == email){
+    fun comprobarRegistro(usu: Usuario, email: String): Boolean {
+        if (usu.email == email) {
             return true
-        }else{
+        } else {
             return false
         }
     }
 
-    fun nombre(email : String) : String{
+    fun nombre(email: String): String {
         var indexArroba = email.indexOf('@')
         return email.substring(0, indexArroba)
     }

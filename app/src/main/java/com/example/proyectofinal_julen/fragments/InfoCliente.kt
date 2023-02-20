@@ -50,7 +50,7 @@ class InfoCliente : Fragment() {
 
         //Le paso los valores que quiero mostrar del usuario que viene de la activity de Carta
         email.text = user.email
-        kpoints.text = "kebabpoints: ${user.kebabpoints.toString()}"
+        kpoints.text = "kebabpoints: ${user.kebabpoints}"
 
         return view
     }

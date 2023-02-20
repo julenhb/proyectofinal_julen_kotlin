@@ -52,4 +52,5 @@ class ProductoService {
     fun getProductoByNombre(nombre : String) : Call<Producto> {
         return getRetrofit().create(ProductoDAO::class.java).getProductoByNombre(nombre)
     }
+
 }

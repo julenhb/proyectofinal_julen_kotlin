@@ -39,12 +39,15 @@ class UsuarioService {
     }
 
 
-
     fun getUsuarioById(id : Int) : Call <Usuario>{
         return getRetrofit().create(UsuarioDAO::class.java).getUsuarioById(id)
     }
 
     fun getUsuarioByEmail(email : String) : Call <Usuario>{
         return getRetrofit().create(UsuarioDAO::class.java).getUsuarioByEmail(email)
+    }
+
+    fun updateUsuario(id : Int, usu : Usuario) : Call <Usuario>{
+        return getRetrofit().create(UsuarioDAO::class.java).updateUsuario(id, usu)
     }
 }
