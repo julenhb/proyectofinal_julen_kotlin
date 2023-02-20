@@ -17,12 +17,14 @@ import androidx.fragment.app.DialogFragment
 import com.example.proyectofinal_julen.OnDialogListener
 import com.example.proyectofinal_julen.R
 import com.example.proyectofinal_julen.activities.CartaActivity
-import com.example.proyectofinal_julen.entity.AdaptadorCarrito
-import com.example.proyectofinal_julen.entity.Pedido
-import com.example.proyectofinal_julen.entity.Producto
-import com.example.proyectofinal_julen.entity.Usuario
+import com.example.proyectofinal_julen.activities.MainActivity
+import com.example.proyectofinal_julen.entity.*
 import com.example.proyectofinal_julen.fragments.InfoCliente
+import com.example.proyectofinal_julen.fragments.ListaProductosAdmnFragment
+import com.example.proyectofinal_julen.fragments.ListaProductosFragment
+import com.example.proyectofinal_julen.fragments.ListaProductosPremiumFragment
 import com.example.proyectofinal_julen.service.PedidoService
+import com.example.proyectofinal_julen.service.ProductoService
 import com.example.proyectofinal_julen.service.UsuarioService
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,13 +34,10 @@ class DialogCarrito : DialogFragment() {
 
     private lateinit var lista: ListView
     private lateinit var precioFinal: TextView
-    private var p1 = Producto()
     private var precio = 0.00
     private var usuarioActualizado = Usuario()
-
-    private var arrayPedidos = ArrayList<Pedido>()
+    private var p1 = Producto()
     private var pedido = Pedido()
-    private var pedidoRealizado = false
 
     private var usuarioService = UsuarioService()
     private var pedidoService = PedidoService()
@@ -90,10 +89,8 @@ class DialogCarrito : DialogFragment() {
                     arrayProductos.clear()
                     arrayObservaciones.clear()
                     onDismiss(dialog)
-                    /*val intent = Intent(requireContext(), CartaActivity::class.java)
-                    intent.putExtra("usuarioActualizado", usuarioActualizado)
-                    startActivity(intent)
-                    requireActivity().finish()*/
+                    val paquete = Bundle()
+                    paquete.putSerializable("usuActualizado", usuarioActualizado)
 
                     Toast.makeText(
                         requireContext(),
@@ -141,14 +138,22 @@ class DialogCarrito : DialogFragment() {
         super.onDismiss(dialog)
         val fragmentManager = parentFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        val miFragmento = InfoCliente()
-        fragmentTransaction.replace(R.id.containerFragments2, miFragmento)
+        val miFragment = ListaProductosPremiumFragment()
+        if(usuarioActualizado.kebabpoints >= 50){
+            fragmentTransaction.replace(R.id.containerFragments, miFragment)
+            Toast.makeText(requireContext(), "¡Enhorabuena! Has llegado a los 50 kebabpoints, ¡eres un kebablover premium!", Toast.LENGTH_LONG).show()
+        }
+
+        val miFragmento2 = InfoCliente()
+        fragmentTransaction.replace(R.id.containerFragments2, miFragmento2)
         val bundle = Bundle().apply {
             putSerializable("usuario", usuarioActualizado)
         }
-        miFragmento.arguments = bundle
+        miFragmento2.arguments = bundle
         fragmentTransaction.commit()
     }
+
+
 }
 
 

@@ -7,9 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.AdapterView.OnItemClickListener
 import android.widget.ListView
 import com.example.proyectofinal_julen.R
+import com.example.proyectofinal_julen.dialogs.DialogPedido
 import com.example.proyectofinal_julen.entity.AdaptadorProducto
 import com.example.proyectofinal_julen.entity.Producto
 import com.example.proyectofinal_julen.service.ProductoService
@@ -17,12 +17,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
-class ListaProductosAdmnFragment : Fragment(), OnItemClickListener {
+class ListaProductosPremiumFragment : Fragment(), AdapterView.OnItemClickListener {
     val arrayProductos = ArrayList<Producto>()
     private lateinit var listProductos : ListView
     val productoService = ProductoService()
-
+    private var prod = Producto()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,7 +70,32 @@ class ListaProductosAdmnFragment : Fragment(), OnItemClickListener {
         })
     }
 
-    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-
+    fun getProductosById(id : Int) {
+        productoService.getProductoById(id).enqueue(object: Callback<Producto> {
+            override fun onResponse(call: Call<Producto>, response: Response<Producto>) {
+                if (response.isSuccessful)
+                {
+                    prod = response.body()!!
+                    val bundle = Bundle()
+                    bundle.putSerializable("Producto", prod)
+                    val dialog = DialogPedido()
+                    dialog.arguments = bundle
+                    val fragmentManager = requireActivity().supportFragmentManager
+                    dialog.show(fragmentManager, "Nuevo")
+                } else
+                {
+                    Log.d("TAG", "aaaaaa")
+                }
+            } override fun onFailure(call: Call<Producto>, t: Throwable) {
+                // something went completely south (like no internet connection)
+                t.message?.let { Log.d("bbbbbb", it) }
+            }
+        })
     }
+
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        getProductosById(arrayProductos[position].id)
+    }
+
+
 }

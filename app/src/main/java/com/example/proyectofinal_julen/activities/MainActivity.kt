@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private lateinit var btnVolver: TextView
     val listaUsuarios = ArrayList<Usuario>()
     val usuarioService = UsuarioService()
-    private lateinit var user: Usuario
+    private var user = Usuario()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,10 +77,11 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
                         Toast.makeText(
                             this,
-                            "Buenas amig@ ${nombre(usu.email)} ${usu.kebabpoints}",
+                            "Buenas amig@ ${nombre(usu.email)}",
                             Toast.LENGTH_LONG
                         )
                             .show()
+                        finish()
                     } else {
                         Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_LONG).show()
                     }
@@ -103,15 +104,15 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                     } else {
                         var usu1 = Usuario(email.text.toString(), pwd.text.toString())
                         usuarioService.createUsuario(usu1)
-                        var usulogin = getUsuarioByEmail(email.text.toString())
                         intent = Intent(this, CartaActivity::class.java)
-                        intent.putExtra("usuario", usulogin)
+                        intent.putExtra("usuario", usu1)
                         startActivity(intent)
                         Toast.makeText(
                             this,
-                            "Buenas amig@ ${nombre(usulogin.email)}",
+                            "Buenas amig@ ${nombre(usu1.email)}",
                             Toast.LENGTH_LONG
                         ).show()
+                        finish()
                     }
 
                 }

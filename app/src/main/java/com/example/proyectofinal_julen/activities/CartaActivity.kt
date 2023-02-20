@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.example.proyectofinal_julen.OnDialogListener
 import com.example.proyectofinal_julen.OnFragmentEventListener
@@ -80,14 +81,24 @@ class CartaActivity : AppCompatActivity(), OnDialogListener, OnFragmentEventList
                 }
             }
             }
-        }
 
+        }
 
 
         override fun onClick(v: View?) {
             when (v?.id) {
                 R.id.btnSesion -> {
+                    AlertDialog.Builder(this)
+                        .setTitle("Cerrar sesión")
+                        .setMessage("¿Ya te vas? :(")
+                        .setPositiveButton("Sí") { _, _ ->
 
+                            intent = Intent(this, MainActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+                        .setNegativeButton("No", null)
+                        .show()
                 }
 
                 R.id.btnCarrito -> {

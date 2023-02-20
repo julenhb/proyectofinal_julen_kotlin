@@ -62,7 +62,6 @@ class ListaProductosFragment : Fragment(), OnItemClickListener {
                     }
                     val adaptadorProductos = AdaptadorProducto(requireContext(), arrayProductos)
                     listProductos.adapter = adaptadorProductos
-                    Log.d("TAG", "insertando usuarios")
                 } else
                 {
                     Log.d("TAG", "aaaaaa")
