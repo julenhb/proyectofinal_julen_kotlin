@@ -38,11 +38,14 @@ class DialogCarrito : DialogFragment() {
     private var usuarioActualizado = Usuario()
     private var p1 = Producto()
     private var pedido = Pedido()
+    private var kpoints = 0
 
     private var usuarioService = UsuarioService()
     private var pedidoService = PedidoService()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
+
 
         val builder = AlertDialog.Builder(context)
 
@@ -58,6 +61,8 @@ class DialogCarrito : DialogFragment() {
         usuarioActualizado = bundle.getSerializable("usuario") as Usuario
 
 
+
+
         val adaptadorLista = AdaptadorCarrito(requireContext(), arrayProductos, arrayObservaciones)
         lista.adapter = adaptadorLista
 
@@ -68,7 +73,8 @@ class DialogCarrito : DialogFragment() {
             }
         }
 
-        var kpoints = 5 * (arrayProductos.size)
+        kpoints = 5 * (arrayProductos.size)
+
 
         precioFinal.text =
             ("Total a pagar: " + precio.toString() + " €" + "\n ¡Obtendrás $kpoints kebabpoints!")
@@ -139,9 +145,26 @@ class DialogCarrito : DialogFragment() {
         val fragmentManager = parentFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         val miFragment = ListaProductosPremiumFragment()
-        if(usuarioActualizado.kebabpoints >= 50){
-            fragmentTransaction.replace(R.id.containerFragments, miFragment)
-            Toast.makeText(requireContext(), "¡Enhorabuena! Has llegado a los 50 kebabpoints, ¡eres un kebablover premium!", Toast.LENGTH_LONG).show()
+        if ((usuarioActualizado.kebabpoints - kpoints) <50) {
+            if (usuarioActualizado.kebabpoints >= 50) {
+                fragmentTransaction.replace(R.id.containerFragments, miFragment)
+                AlertDialog.Builder(requireContext())
+                    .setTitle("¡ENHORABUENA!")
+                    .setMessage(
+                        "Te has convertido en kebablover premium, \n ahora tienes" +
+                                " acceso a los productos ESPCIALES de nuestro catálogo. \n" +
+                                "Disfruta, y gracias por confiar siempre en nostros ;)"
+                    )
+                    .setPositiveButton("OLÉ") { _, _ ->
+
+                    }
+                    .show()
+                Toast.makeText(
+                    requireContext(),
+                    "¡Enhorabuena! Has llegado a los 50 kebabpoints, ¡eres un kebablover premium!",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
 
         val miFragmento2 = InfoCliente()
@@ -152,7 +175,6 @@ class DialogCarrito : DialogFragment() {
         miFragmento2.arguments = bundle
         fragmentTransaction.commit()
     }
-
 
 }
 

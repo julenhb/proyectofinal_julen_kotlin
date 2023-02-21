@@ -19,6 +19,7 @@ import com.example.proyectofinal_julen.entity.Usuario
 import com.example.proyectofinal_julen.fragments.InfoCliente
 import com.example.proyectofinal_julen.fragments.ListaProductosAdmnFragment
 import com.example.proyectofinal_julen.fragments.ListaProductosFragment
+import com.example.proyectofinal_julen.fragments.ListaProductosPremiumFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class CartaActivity : AppCompatActivity(), OnDialogListener, OnFragmentEventListener,
@@ -62,7 +63,7 @@ class CartaActivity : AppCompatActivity(), OnDialogListener, OnFragmentEventList
                     var miFragmento2: Fragment
 
                     if (user.kebabpoints >= 50) {
-                        miFragmento = ListaProductosAdmnFragment()
+                        miFragmento = ListaProductosPremiumFragment()
                     } else {
                         miFragmento = ListaProductosFragment()
                     }
@@ -107,6 +108,7 @@ class CartaActivity : AppCompatActivity(), OnDialogListener, OnFragmentEventList
                         bundle.putSerializable("arrayP", arrayCarrito)
                         bundle.putSerializable("arrayO", arrayObservaciones)
                         bundle.putSerializable("usuario", user)
+                        bundle.putSerializable("usuarioAntiguo", user)
                         val dialog = DialogCarrito()
                         dialog.arguments = bundle
                         val fragmentManager = supportFragmentManager

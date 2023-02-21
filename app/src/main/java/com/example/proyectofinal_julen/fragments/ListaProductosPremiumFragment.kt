@@ -33,11 +33,11 @@ class ListaProductosPremiumFragment : Fragment(), AdapterView.OnItemClickListene
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view =  inflater.inflate(R.layout.fragment_lista_productos, container, false)
+        val view =  inflater.inflate(R.layout.fragment_lista_productos_premium, container, false)
 
         //Llamamos al método getProductos para llenar el arrayVehículos
         // que vamos a pasar al adaptador del listView
-        getProductos()
+        getPremium()
 
         listProductos = view.findViewById(R.id.lista)
 
@@ -46,7 +46,7 @@ class ListaProductosPremiumFragment : Fragment(), AdapterView.OnItemClickListene
         return view
     }
 
-    fun getProductos() {
+    fun getPremium() {
         productoService.getProductos().enqueue(object: Callback<List<Producto>> {
             override fun onResponse(call: Call<List<Producto>>, response: Response<List<Producto>>) {
                 if (response.isSuccessful)
@@ -95,6 +95,7 @@ class ListaProductosPremiumFragment : Fragment(), AdapterView.OnItemClickListene
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         getProductosById(arrayProductos[position].id)
+
     }
 
 

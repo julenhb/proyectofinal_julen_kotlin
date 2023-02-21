@@ -18,6 +18,10 @@ interface ProductoDAO {
     @GET("productos")
     fun getProductos(): Call<List<Producto>>
 
+    //Muestra los productos premium
+    @GET("/premium")
+    fun getPremium(): Call<List<Producto>>
+
     // Método para obtener los productos catalogados
     @GET("catalogado")
     fun getCatalogados(): Call<List<Producto>>

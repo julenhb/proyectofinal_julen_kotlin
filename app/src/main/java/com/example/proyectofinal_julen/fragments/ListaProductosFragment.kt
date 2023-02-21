@@ -49,6 +49,7 @@ class ListaProductosFragment : Fragment(), OnItemClickListener {
 
         listProductos.setOnItemClickListener(this)
 
+
         return view
     }
 

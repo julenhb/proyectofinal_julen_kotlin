@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<RelativeLayout
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:id="@+id/rl"
     android:background="@color/prueba">
-
-
 
     <TextView
         android:id="@+id/nombreProducto"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/nombre_producto"
         android:layout_marginTop="10dp"
@@ -30,6 +32,6 @@
         android:textSize="18dp"
         android:textColor="@color/marron_bk"
         />
-
+</RelativeLayout>
 
 </RelativeLayout>

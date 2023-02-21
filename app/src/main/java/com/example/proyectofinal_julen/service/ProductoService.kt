@@ -40,6 +40,10 @@ class ProductoService {
         return getRetrofit().create(ProductoDAO::class.java).getProductos()
     }
 
+    fun getPremium() : Call<List<Producto>> {
+        return getRetrofit().create(ProductoDAO::class.java).getProductos()
+    }
+
     //Método para ver todos los usuarios
     fun getCatalogados() : Call<List<Producto>> {
             return getRetrofit().create(ProductoDAO::class.java).getCatalogados()
