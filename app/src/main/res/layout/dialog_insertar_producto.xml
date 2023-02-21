@@ -13,10 +13,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nombre del producto"
-                android:id="@+id/nombreProducto"
                 />
 
-
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:hint="Escribe el nombre del producto"
+                android:id="@+id/nombreProducto"/>
         </TableRow>
 
         <TableRow>
@@ -24,10 +28,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Precio del producto"
-                android:id="@+id/precioProducto"
                 />
 
-
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:hint="Escribe el precio del producto"
+                android:inputType="numberDecimal"
+                android:id="@+id/precioProducto"/>
         </TableRow>
 
         <TableRow>
@@ -35,10 +44,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Descripción del producto"
-                android:id="@+id/descripcion"
                 />
 
-
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:maxLength="255"
+                android:hint="Escribe la descripción del producto"
+                android:id="@+id/descripcion"/>
         </TableRow>
 
         <CheckBox
@@ -53,6 +67,8 @@
             android:layout_height="wrap_content"
             android:text="Hacer menú"
             android:layout_marginTop="10dp"
+            android:enabled="false"
+            android:visibility="invisible"
             android:id="@+id/menuCheck"/>
 
 

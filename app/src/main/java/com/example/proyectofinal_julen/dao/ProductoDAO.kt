@@ -4,8 +4,10 @@ import com.example.proyectofinal_julen.entity.Producto
 import com.example.proyectofinal_julen.entity.Usuario
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface ProductoDAO {
@@ -32,5 +34,11 @@ interface ProductoDAO {
 
     @GET("producto/{nombre}")
     fun getProductoByNombre(@Path("nombre") nombre : String): Call<Producto>
+
+    @DELETE("producto/{id}")
+    fun deleteProductoById(@Path("id") id : Int) : Call<Producto>
+
+    @PUT("producto/{id}")
+    fun updateProducto(@Path("id") id: Int, @Body producto: Producto): Call<Producto>
 
 }

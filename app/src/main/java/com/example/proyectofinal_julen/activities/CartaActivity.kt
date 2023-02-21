@@ -1,6 +1,5 @@
 package com.example.proyectofinal_julen.activities
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,20 +8,15 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.proyectofinal_julen.OnDialogListener
 import com.example.proyectofinal_julen.OnFragmentEventListener
 import com.example.proyectofinal_julen.R
 import com.example.proyectofinal_julen.dialogs.DialogCarrito
-import com.example.proyectofinal_julen.dialogs.DialogModificarProducto
-import com.example.proyectofinal_julen.dialogs.DialogPedido
+import com.example.proyectofinal_julen.dialogs.DialogInsertarProducto
 import com.example.proyectofinal_julen.entity.Producto
 import com.example.proyectofinal_julen.entity.Usuario
-import com.example.proyectofinal_julen.fragments.InfoCliente
-import com.example.proyectofinal_julen.fragments.ListaProductosAdmnFragment
-import com.example.proyectofinal_julen.fragments.ListaProductosFragment
-import com.example.proyectofinal_julen.fragments.ListaProductosPremiumFragment
+import com.example.proyectofinal_julen.fragments.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class CartaActivity : AppCompatActivity(), OnDialogListener, OnFragmentEventListener,
@@ -52,13 +46,15 @@ class CartaActivity : AppCompatActivity(), OnDialogListener, OnFragmentEventList
 
                 //SI EL USUARIO QUE RECOGEMOS ES ADMINISTRADOR...
                 if (user.admn == true) {
-                    carrito.setBackgroundResource(android.R.drawable.ic_input_add)
+                    carrito.setImageResource(android.R.drawable.ic_input_add)
                     //Colocamos el fragmento de la lista de productos que están en el catálogo
                     val fragmentTransaction = fragmentManager.beginTransaction()
-                    var miFragmento: Fragment
-                    miFragmento = ListaProductosAdmnFragment()
+                    var miFragmento = ListaProductosAdmnFragment()
+                    var miFragmento2 = InfoAdmin()
                     fragmentTransaction.replace(R.id.containerFragments, miFragmento)
+                    fragmentTransaction.replace(R.id.containerFragments2, miFragmento2)
                     fragmentTransaction.commit()
+
                 }//SI EL USUARIO QUE RECOGEMOS NO ES ADMINISTRADOR...
                 else {
                     //Colocamos el fragmento deseado de la lista de productos
@@ -110,7 +106,7 @@ class CartaActivity : AppCompatActivity(), OnDialogListener, OnFragmentEventList
 
                     //SI EL USUARIO QUE RECOGIMOS ES ADMIN...
                     if (user.admn == true) {
-                        val dialogInsert = DialogModificarProducto()
+                        val dialogInsert = DialogInsertarProducto()
                         val fragmentManager = supportFragmentManager
                         dialogInsert.show(fragmentManager, "Nuevo")
 

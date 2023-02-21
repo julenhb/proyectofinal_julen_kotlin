@@ -65,6 +65,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         when (v?.id) {
             R.id.btnLogin -> {
                 if (login.text.equals(getString(R.string.log_in))) {
+                    if(email.text.toString() == "" || pwd.text.toString() == "" || email.text.toString() == null || pwd.text.toString() == null){
+                        Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_LONG).show()
+                    }
                     var usu = getUsuarioByEmail(email.text.toString())
                     Log.d(
                         "USUARIO",
@@ -83,6 +86,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                             .show()
                         finish()
                     } else {
+                        Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_LONG).show()
+                    }
+                    if(email.text.isEmpty() || pwd.text.isEmpty()){
                         Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_LONG).show()
                     }
 
@@ -156,23 +162,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         }
     }
 
-/*
-    fun getUsuarioByEmail(email: String) {
-        usuarioService.getUsuarioByEmail(email).enqueue(object : Callback<Usuario> {
-            override fun onResponse(call: Call<Usuario>, response: Response<Usuario>) {
-                if (response.isSuccessful) {
-                    user = response.body()!!
-                } else {
-                    Log.d("TAG", "aaaaaa")
-                }
-            }
 
-            override fun onFailure(call: Call<Usuario>, t: Throwable) {
-                // something went completely south (like no internet connection)
-                t.message?.let { Log.d("bbbbb", it) }
-            }
-        })
-    }*/
 
     fun getUsuarioByEmail(email: String): Usuario {
         for (i in listaUsuarios) {
@@ -209,18 +199,30 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
 
     fun comprobarLogin(usu: Usuario, email: String, pwd: String): Boolean {
-        if (usu.email == email && usu.pwd == pwd) {
-            return true
-        } else {
+
+        if(email == "" || pwd == "" || email == null || pwd == null){
             return false
+            Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_LONG).show()
+        }else {
+            if (usu.email == email && usu.pwd == pwd) {
+                return true
+            } else {
+                return false
+            }
         }
     }
 
     fun comprobarRegistro(usu: Usuario, email: String): Boolean {
-        if (usu.email == email) {
-            return true
-        } else {
+        if(email == "" || email == null){
             return false
+            Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_LONG).show()
+        }else {
+
+            if (usu.email == email) {
+                return true
+            } else {
+                return false
+            }
         }
     }
 

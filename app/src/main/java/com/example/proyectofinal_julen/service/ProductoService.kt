@@ -57,4 +57,12 @@ class ProductoService {
         return getRetrofit().create(ProductoDAO::class.java).getProductoByNombre(nombre)
     }
 
+    fun deleteProductoById(id : Int) : Call<Producto> {
+        return getRetrofit().create(ProductoDAO::class.java).deleteProductoById(id)
+    }
+
+    fun updateProducto(id : Int, producto: Producto) : Call <Producto>{
+        return getRetrofit().create(ProductoDAO::class.java).updateProducto(id, producto)
+    }
+
 }
