@@ -10,4 +10,11 @@
     <color name="marron_bk">#502314</color>
     <color name="red_bk">#d62300</color>
     <color name="prueba">#FAEBD7</color>
+    <color name="premium">#f3ca4c</color>
+    <color name="rojo_suave">#f2515b</color>
+    <color name="verde">#d8f8bd</color>
+    <color name="marron">#edad5a</color>
+    <color name="pollo">#f6c49d</color>
+    <color name="complementos">#f3ee93</color>
+    <color name="mixto">#f9e6c5</color>
 </resources>

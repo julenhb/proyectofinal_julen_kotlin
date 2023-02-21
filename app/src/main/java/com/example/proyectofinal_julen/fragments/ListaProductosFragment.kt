@@ -9,13 +9,10 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ListView
-import androidx.fragment.app.DialogFragment
 import com.example.proyectofinal_julen.R
-import com.example.proyectofinal_julen.dao.UsuarioDAO
 import com.example.proyectofinal_julen.dialogs.DialogPedido
-import com.example.proyectofinal_julen.entity.AdaptadorProducto
+import com.example.proyectofinal_julen.AdaptadoresPersonalizados.AdaptadorProducto
 import com.example.proyectofinal_julen.entity.Producto
-import com.example.proyectofinal_julen.entity.Usuario
 import com.example.proyectofinal_julen.service.ProductoService
 import retrofit2.Call
 import retrofit2.Callback

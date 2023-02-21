@@ -1,4 +1,4 @@
-package com.example.proyectofinal_julen.entity
+package com.example.proyectofinal_julen.AdaptadoresPersonalizados
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.core.view.isVisible
 import com.example.proyectofinal_julen.R
+import com.example.proyectofinal_julen.entity.Producto
 
 class AdaptadorCarrito (private var mcontext: Context?, private var listaProductos : List<Producto>, private var listaObservaciones : List<String>)
     : ArrayAdapter<Producto>(mcontext!!, R.layout.item_producto, listaProductos) {

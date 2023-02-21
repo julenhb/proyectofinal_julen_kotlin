@@ -10,7 +10,7 @@ import android.widget.AdapterView
 import android.widget.ListView
 import com.example.proyectofinal_julen.R
 import com.example.proyectofinal_julen.dialogs.DialogPedido
-import com.example.proyectofinal_julen.entity.AdaptadorProducto
+import com.example.proyectofinal_julen.AdaptadoresPersonalizados.AdaptadorProducto
 import com.example.proyectofinal_julen.entity.Producto
 import com.example.proyectofinal_julen.service.ProductoService
 import retrofit2.Call

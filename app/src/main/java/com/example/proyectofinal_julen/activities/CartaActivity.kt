@@ -1,5 +1,6 @@
 package com.example.proyectofinal_julen.activities
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,11 +9,13 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.proyectofinal_julen.OnDialogListener
 import com.example.proyectofinal_julen.OnFragmentEventListener
 import com.example.proyectofinal_julen.R
 import com.example.proyectofinal_julen.dialogs.DialogCarrito
+import com.example.proyectofinal_julen.dialogs.DialogModificarProducto
 import com.example.proyectofinal_julen.dialogs.DialogPedido
 import com.example.proyectofinal_julen.entity.Producto
 import com.example.proyectofinal_julen.entity.Usuario
@@ -49,6 +52,7 @@ class CartaActivity : AppCompatActivity(), OnDialogListener, OnFragmentEventList
 
                 //SI EL USUARIO QUE RECOGEMOS ES ADMINISTRADOR...
                 if (user.admn == true) {
+                    carrito.setBackgroundResource(android.R.drawable.ic_input_add)
                     //Colocamos el fragmento de la lista de productos que están en el catálogo
                     val fragmentTransaction = fragmentManager.beginTransaction()
                     var miFragmento: Fragment
@@ -62,7 +66,7 @@ class CartaActivity : AppCompatActivity(), OnDialogListener, OnFragmentEventList
                     var miFragmento: Fragment
                     var miFragmento2: Fragment
 
-                    if (user.kebabpoints >= 50) {
+                    if (user.kebabpoints >= 50 && user.admn == false) {
                         miFragmento = ListaProductosPremiumFragment()
                     } else {
                         miFragmento = ListaProductosFragment()
@@ -103,22 +107,31 @@ class CartaActivity : AppCompatActivity(), OnDialogListener, OnFragmentEventList
                 }
 
                 R.id.btnCarrito -> {
-                    if (arrayCarrito.size >= 1) {
-                        val bundle = Bundle()
-                        bundle.putSerializable("arrayP", arrayCarrito)
-                        bundle.putSerializable("arrayO", arrayObservaciones)
-                        bundle.putSerializable("usuario", user)
-                        bundle.putSerializable("usuarioAntiguo", user)
-                        val dialog = DialogCarrito()
-                        dialog.arguments = bundle
+
+                    //SI EL USUARIO QUE RECOGIMOS ES ADMIN...
+                    if (user.admn == true) {
+                        val dialogInsert = DialogModificarProducto()
                         val fragmentManager = supportFragmentManager
-                        dialog.show(fragmentManager, "Nuevo")
+                        dialogInsert.show(fragmentManager, "Nuevo")
+
                     } else {
-                        Toast.makeText(
-                            this,
-                            "Tienes que añadir por lo menos un producto a la bolsa",
-                            Toast.LENGTH_LONG
-                        ).show()
+                        if (arrayCarrito.size >= 1) {
+                            val bundle = Bundle()
+                            bundle.putSerializable("arrayP", arrayCarrito)
+                            bundle.putSerializable("arrayO", arrayObservaciones)
+                            bundle.putSerializable("usuario", user)
+                            bundle.putSerializable("usuarioAntiguo", user)
+                            val dialog = DialogCarrito()
+                            dialog.arguments = bundle
+                            val fragmentManager = supportFragmentManager
+                            dialog.show(fragmentManager, "Nuevo")
+                        } else {
+                            Toast.makeText(
+                                this,
+                                "Tienes que añadir por lo menos un producto a la bolsa",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
                     }
                 }
             }

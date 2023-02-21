@@ -9,8 +9,9 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ListView
+import com.example.proyectofinal_julen.AdaptadoresPersonalizados.AdaptadorAdmn
 import com.example.proyectofinal_julen.R
-import com.example.proyectofinal_julen.entity.AdaptadorProducto
+import com.example.proyectofinal_julen.AdaptadoresPersonalizados.AdaptadorProducto
 import com.example.proyectofinal_julen.entity.Producto
 import com.example.proyectofinal_julen.service.ProductoService
 import retrofit2.Call
@@ -34,7 +35,7 @@ class ListaProductosAdmnFragment : Fragment(), OnItemClickListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view =  inflater.inflate(R.layout.fragment_lista_productos, container, false)
+        val view =  inflater.inflate(R.layout.fragment_lista_productos_admn, container, false)
 
         //Llamamos al método getProductos para llenar el arrayVehículos
         // que vamos a pasar al adaptador del listView
@@ -55,7 +56,7 @@ class ListaProductosAdmnFragment : Fragment(), OnItemClickListener {
                     for (p1 in response.body()!!) {
                         arrayProductos.add(p1)
                     }
-                    val adaptadorProductos = AdaptadorProducto(requireContext(), arrayProductos)
+                    val adaptadorProductos = AdaptadorAdmn(requireContext(), arrayProductos)
                     listProductos.adapter = adaptadorProductos
                     Log.d("TAG", "insertando usuarios")
                 } else

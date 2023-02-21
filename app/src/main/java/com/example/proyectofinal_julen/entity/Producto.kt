@@ -16,12 +16,12 @@ class Producto : java.io.Serializable {
 
     }
 
-    constructor(nombre : String, precio : Double){
+    constructor(nombre : String, precio : Double, descripcion : String, catalogado : Boolean){
         this.id = 0
         this.nombre = nombre
         this.precio = precio
-        this.descripcion = ""
-        this.catalogado = true
+        this.descripcion = descripcion
+        this.catalogado = catalogado
     }
 
     constructor(){

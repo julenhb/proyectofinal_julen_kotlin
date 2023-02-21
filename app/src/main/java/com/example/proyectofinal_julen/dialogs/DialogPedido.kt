@@ -12,11 +12,8 @@ import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.example.proyectofinal_julen.OnDialogListener
 import com.example.proyectofinal_julen.R
-import com.example.proyectofinal_julen.entity.AdaptadorProducto
 import com.example.proyectofinal_julen.entity.Producto
-import com.example.proyectofinal_julen.entity.Usuario
 import com.example.proyectofinal_julen.service.ProductoService
-import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
