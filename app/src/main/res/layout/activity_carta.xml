@@ -54,16 +54,14 @@
             android:background="@drawable/footer"/>
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageButton
         android:id="@+id/btnCarrito"
-        android:layout_width="67dp"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginBottom="40dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/bolsa"
-        app:backgroundTint="@android:color/holo_red_light"
-
+        android:src="@drawable/bolsa2"
         />
 
 </RelativeLayout>

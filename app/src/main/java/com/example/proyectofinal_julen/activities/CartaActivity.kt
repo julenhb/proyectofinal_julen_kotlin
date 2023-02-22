@@ -1,13 +1,17 @@
 package com.example.proyectofinal_julen.activities
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Vibrator
 import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.getSystemService
 import androidx.fragment.app.Fragment
 import com.example.proyectofinal_julen.OnDialogListener
 import com.example.proyectofinal_julen.OnFragmentEventListener
@@ -23,7 +27,8 @@ class CartaActivity : AppCompatActivity(), OnDialogListener, OnFragmentEventList
     OnClickListener {
 
     private lateinit var userSettings: FloatingActionButton
-    private lateinit var carrito: FloatingActionButton
+    private lateinit var carrito: ImageButton
+    private lateinit var vibrator: Vibrator
     val fragmentManager = supportFragmentManager
     val arrayCarrito = ArrayList<Producto>()
     val arrayObservaciones = ArrayList<String>()
@@ -34,9 +39,12 @@ class CartaActivity : AppCompatActivity(), OnDialogListener, OnFragmentEventList
 
         userSettings = findViewById(R.id.btnSesion)
         carrito = findViewById(R.id.btnCarrito)
+        vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
         userSettings.setOnClickListener(this)
         carrito.setOnClickListener(this)
+
+
 
 
         //COMPROBAMOS QUE HEMOS ENVIADO BIEN EL INTENT DESDE LA ANTERIOR ACTIVITY
@@ -106,6 +114,7 @@ class CartaActivity : AppCompatActivity(), OnDialogListener, OnFragmentEventList
 
                     //SI EL USUARIO QUE RECOGIMOS ES ADMIN...
                     if (user.admn == true) {
+                        vibrator.vibrate(50)
                         val dialogInsert = DialogInsertarProducto()
                         val fragmentManager = supportFragmentManager
                         dialogInsert.show(fragmentManager, "Nuevo")
@@ -122,6 +131,7 @@ class CartaActivity : AppCompatActivity(), OnDialogListener, OnFragmentEventList
                             val fragmentManager = supportFragmentManager
                             dialog.show(fragmentManager, "Nuevo")
                         } else {
+                            vibrator.vibrate(50)
                             Toast.makeText(
                                 this,
                                 "Tienes que añadir por lo menos un producto a la bolsa",
